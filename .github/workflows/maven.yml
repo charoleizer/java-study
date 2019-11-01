@@ -13,11 +13,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    
     - name: Code Climate Coverage Action
-      with:
-        node-version: '12'
     - uses: paambaati/codeclimate-action@v2.3.0
       env:
         CC_TEST_REPORTER_ID: 3ce737680a2cf48a2623087e2239cc09100af630ccb3819ff9cd5ae35481b9cc
