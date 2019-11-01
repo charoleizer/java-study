@@ -15,6 +15,23 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
   
+  test:
+    strategy:
+      matrix:
+        platform: [ ubuntu-latest, macOS-latest ]
+        node: [ '12', '10' ]
+    name: test/node ${{ matrix.node }}/${{ matrix.platform }}
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: ${{ matrix.node }}
+    - run: npm install -g yarn
+    - run: yarn install
+    - run: yarn build
+    - run: yarn test
+  
   coverage:
     name: Test & publish code coverage
     runs-on: ubuntu-latest
@@ -23,9 +40,12 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: '12'
+    - run: npm install -g yarn
+    - run: yarn install
+    - run: yarn build
     - uses: paambaati/codeclimate-action@v2.3.0
       env:
         CC_TEST_REPORTER_ID: 3ce737680a2cf48a2623087e2239cc09100af630ccb3819ff9cd5ae35481b9cc
       with:
-        coverageCommand: npm run coverage
+        coverageCommand: yarn coverage
         debug: true
