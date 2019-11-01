@@ -15,14 +15,8 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
   
-  coverage:
-    name: Test & publish code coverage
-    runs-on: ubuntu-latest
-    steps:
-    - run: npm install
-    - uses: paambaati/codeclimate-action@v2.3.0
+    - name: Run tests
+      run: |
+        mvn test
       env:
         CC_TEST_REPORTER_ID: 3ce737680a2cf48a2623087e2239cc09100af630ccb3819ff9cd5ae35481b9cc
-      with:
-        coverageCommand: npm run coverage
-        debug: true
