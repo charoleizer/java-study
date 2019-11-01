@@ -17,10 +17,10 @@ jobs:
   
     - name: Run tests
       run: |
-        mvn test
         curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
         chmod +x ./cc-test-reporter
         ./cc-test-reporter before-build
-        ./cc-test-reporter after-build --coverage-input-type /home/runner/work/java-study/java-study/target\surefire-reports\TEST-com.example.javastudy.JavaStudyApplicationTests.xml --exit-code $?
+        mvn test
+        ./cc-test-reporter format-coverage -d -t jacoco ./target/jacoco-ut/jacoco.xml
       env:
         CC_TEST_REPORTER_ID: 3ce737680a2cf48a2623087e2239cc09100af630ccb3819ff9cd5ae35481b9cc
