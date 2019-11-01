@@ -26,7 +26,7 @@ jobs:
     - run: npm install -g yarn
     - run: yarn install
     - run: yarn build
-    - uses: paambaati/codeclimate-action@v2.2.4
+    - uses: paambaati/codeclimate-action@v2.3.0
       env:
         CC_TEST_REPORTER_ID: 3ce737680a2cf48a2623087e2239cc09100af630ccb3819ff9cd5ae35481b9cc
       with:
