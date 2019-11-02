@@ -22,6 +22,5 @@ jobs:
         ./cc-test-reporter before-build
         mvn test
         ./cc-test-reporter format-coverage -d -t jacoco ./target/jacoco-ut/jacoco.xml
-        ./cc-test-reporter upload-coverage -d
       env:
         CC_TEST_REPORTER_ID: 3ce737680a2cf48a2623087e2239cc09100af630ccb3819ff9cd5ae35481b9cc
